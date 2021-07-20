@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_baseline_home_24"
+            android:title="Home"
+            />
+
+        <item
+            android:id="@+id/nav_detection"
+            android:icon="@drawable/ic_detection"
+            android:title="Detection" />
+
+        <item
+            android:id="@+id/nav_quiz"
+            android:icon="@drawable/ic_quiz"
+            android:title="Quizzes" />
+
+        <item
+            android:id="@+id/nav_reminder"
+            android:icon="@drawable/ic_reminder"
+            android:title="Reminder" />
+
+        <item
+            android:id="@+id/nav_sleep"
+            android:icon="@drawable/ic_sleep"
+            android:title="Sleep Monitor" />
+
+        <item
+            android:id="@+id/nav_report"
+            android:icon="@drawable/ic_report"
+            android:title="Report"/>
+
+        <item
+            android:id="@+id/nav_yoga"
+            android:icon="@drawable/ic_yoga"
+            android:title="Yoga"/>
+
+        <item
+            android:id="@+id/nav_doctor"
+            android:icon="@drawable/ic_doctor"
+            android:title="Konnect"/>
+
+        <item
+            android:id="@+id/nav_fall"
+            android:icon="@drawable/ic_fall"
+            android:title="Fall Detection"/>
+
+        <item
+            android:id="@+id/nav_community"
+            android:icon="@drawable/ic_community"
+            android:title="Community"/>
+
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_logout"
+            android:title="Logout"/>
+    </group>
+
+</menu>

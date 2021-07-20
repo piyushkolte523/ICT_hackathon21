@@ -1,0 +1,141 @@
+<html>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<style>
+  main{
+  background-image: url(try2.jpg);
+  position: relative;
+  background-repeat: no-repeat;
+  background-attachment: fixed; 
+  background-size: 100% 100%;
+  height: 100%;
+}
+
+nav{
+
+background-color:4d1a00;
+  position: relative;
+  background-repeat: no-repeat;
+  background-attachment: fixed; 
+  background-size: 100% 100%;
+
+}
+
+a{
+color:white; font-size: 20px; font-weight:bold
+}
+a:hover { 
+  color: green;
+}
+
+
+.jumbotron{
+  
+    filter: background-blur(25px); 
+    background-color: rgba(0 ,0 ,0 ,0.7); 
+}
+
+
+.vertical-center {
+  min-height: 50%;  /* Fallback for browsers do NOT support vh unit */
+  
+}
+
+input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+    border: 3px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 8%;
+    color: white;
+}
+
+
+</style>
+<title>Dr. FarmAI</title>
+<body>
+	<nav class="navbar navbar-expand-lg">
+  <a class="nav-link" href="http://127.0.0.1:5000/home" style="margin-left:100px">Dr. FarmAI</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="http://127.0.0.1:5000/home" style="margin-left:100px">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" style="margin-left:100px">Prediction</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0 searchform" action="https://www.google.com/search" method="get" name="searchform" target="_blank">
+      <input name="sitesearch" type="hidden">
+<input autocomplete="on" class="form-control search" name="q" placeholder="Search" required="required"  type="search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+
+<main role="main">
+    <div class="container"><br><br><br><br><br>
+    <div class="jumbotron vertical-center">
+    <div class="row" >
+      
+    <div class="col-md-4" style="margin-left: 34%;">
+    <br><br><br><br>
+    <center>
+
+  <label for="image-selector" class="custom-file-upload">
+    <i class="fa fa-cloud-upload" ></i><button >Custom Upload</button>
+    </label>
+    <input id="image-selector" type="file"/>
+  <br><button  id="predict-button" class="predict-button btn btn-success btn-lg" style="margin-top: 5%;" >Predict</button>
+  <br><br>
+  <p style="color: white; font-weight:bold; font-size: 18px;">Analysis Result<br></p>
+  <p style="color: ff6600; font-weight:bold; font-size: 24px;"><span id="tomato-prediction"></span></p><br>
+  <img id="selected-img" src="#"  />  
+  </center>
+  <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script>
+    let base64Image;
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+        let reader = new FileReader();
+        reader.onload=function(e){
+          let dataURL=reader.result;
+           $('#selected-img').attr('src', e.target.result);
+          base64Image = dataURL.replace('data:image/jpeg;base64,','');
+                    }
+      reader.readAsDataURL(input.files[0]);
+
+      $("#tomato-prediction").text("");
+    }}    
+
+    
+    $("#image-selector").change(function(){
+    readURL(this);
+});
+
+    $("#predict-button").click(function(event){
+      let message={
+        image: base64Image
+      }
+      //console.log(message.image);
+      $.post("http://127.0.0.1:5000/prediction",JSON.stringify(message),function(response){
+        var obj=JSON.parse(response);
+        $("#tomato-prediction").text(obj[0]);
+        console.log(response);
+      });
+    });
+
+  </script>
+    </div>
+</div>
+</div>
+</div>
+</main>
+</body>
+</html>
